@@ -4,13 +4,15 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import ArtistList from './../ArtistList/ArtistList.js';
+import { connect } from 'react-redux'
+import mapReduxStateToProps from '../../Modules/mapReduxStateToProps'
 
 class App extends Component {
   // Called when the (App) component is created
   state = {
     artists: [],
   }
-  
+
   // DOM is ready
   componentDidMount() { // react Component method
     this.refreshArtists();
@@ -37,10 +39,10 @@ class App extends Component {
           <h1 className="App-title">Famous Artists</h1>
         </header>
         <br/>
-        <ArtistList refreshArtists={this.refreshArtists} artistList={this.state.artists} />
+        <ArtistList refreshArtists={this.refreshArtists} artistList={this.props.reduxState.artistReducer} />
       </div>
     );
   }
 }
 
-export default App;
+export default connect(mapReduxStateToProps)(App);
