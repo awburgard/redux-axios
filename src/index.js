@@ -10,7 +10,10 @@ import logger from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 
-const artistReducer = (state = [], action) => {
+const artistReducer = (state = ['Bob','New Doug'], action) => {
+    if (action.type === 'ADD_ARTISTS_LIST'){
+        return [...state, ...action.payload]
+    }
     return state;
 }
 
